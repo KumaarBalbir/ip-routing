@@ -111,4 +111,14 @@ Route *IPTrie::findLongestPrefixMatch(const std::string &ip)
 
   return result;
 }
+void IPTrie::deleteTrie()
+{
+  delete root;
+  root = nullptr;
+}
+void IPTrie::deleteRoute()
+{
+  delete root->route;
+  root->route = nullptr;
+}
 #endif // ROUTER_CPP
