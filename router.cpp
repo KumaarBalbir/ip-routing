@@ -2,6 +2,8 @@
 #define ROUTER_CPP
 
 #include "router.h"
+#include <sstream>
+#include <bitset>
 
 Route::Route(const std::string &routeName, const std::string &ip, int mask)
     : routeName(routeName), ipAddress(ip), subnetMask(mask) {}
@@ -37,5 +39,27 @@ IPTrie::IPTrie()
 IPTrie::~IPTrie()
 {
   delete root;
+}
+
+std::string IPTrie::decToBinary(const std::string &segment)
+{
+  int num = std::stoi(segment);
+  std::bitset<8> bits(num);
+  return bits.to_string();
+}
+
+std::string IPTrie::ipToBinary(const std::string &ip)
+{
+  std::stringstream ss(ip);
+  std::string segment;
+  std::string binary;
+
+  for (int i = 0; i < 4; i++)
+  {
+    std::getline(ss, segment, '.');
+    binary += decToBinary(segment);
+  }
+
+  return binary;
 }
 #endif // ROUTER_CPP
