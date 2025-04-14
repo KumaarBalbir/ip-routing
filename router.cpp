@@ -19,4 +19,10 @@ int Route::getSubnetMask() const
 {
   return subnetMask;
 }
+TrieNode::TrieNode()
+{
+  children[0] = nullptr;
+  children[1] = nullptr;
+  route = nullptr;
+}
 #endif // ROUTER_CPP
