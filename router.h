@@ -16,4 +16,13 @@ public:
   int getSubnetMask() const;
 };
 
+class TrieNode
+{
+public:
+  TrieNode *children[2];
+  Route *route;
+  TrieNode();
+  ~TrieNode();
+};
+
 #endif
