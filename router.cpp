@@ -10,4 +10,13 @@ std::string Route::getRouteName() const
 {
   return routeName;
 }
+
+std::string Route::getIPAddress() const
+{
+  return ipAddress;
+}
+int Route::getSubnetMask() const
+{
+  return subnetMask;
+}
 #endif // ROUTER_CPP
