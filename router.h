@@ -25,4 +25,19 @@ public:
   ~TrieNode();
 };
 
+class IPTrie
+{
+private:
+  TrieNode *root;
+  std::string ipToBinary(const std::string &ip);
+
+public:
+  IPTrie();
+  ~IPTrie();
+  void insert(Route *route);
+  Route *findLongestPrefixMatch(const std::string &ip);
+  void deleteTrie();
+  void deleteRoute();
+};
+
 #endif
