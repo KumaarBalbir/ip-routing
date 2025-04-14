@@ -30,4 +30,12 @@ TrieNode::~TrieNode()
   delete children[0];
   delete children[1];
 }
+IPTrie::IPTrie()
+{
+  root = new TrieNode();
+}
+IPTrie::~IPTrie()
+{
+  delete root;
+}
 #endif // ROUTER_CPP
