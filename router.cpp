@@ -62,4 +62,27 @@ std::string IPTrie::ipToBinary(const std::string &ip)
 
   return binary;
 }
+void IPTrie::insert(Route *route)
+{
+  std::string binaryIP = ipToBinary(route->getIPAddress());
+  int maskLen = route->getSubnetMask();
+
+  TrieNode *current = root;
+
+  // Insert only up to the subnet mask length
+  for (int i = 0; i < maskLen; i++)
+  {
+    int bit = binaryIP[i] - '0';
+
+    if (current->children[bit] == nullptr)
+    {
+      current->children[bit] = new TrieNode();
+    }
+
+    current = current->children[bit];
+  }
+
+  // Store route information at the node
+  current->route = route;
+}
 #endif // ROUTER_CPP
