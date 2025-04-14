@@ -25,4 +25,9 @@ TrieNode::TrieNode()
   children[1] = nullptr;
   route = nullptr;
 }
+TrieNode::~TrieNode()
+{
+  delete children[0];
+  delete children[1];
+}
 #endif // ROUTER_CPP
