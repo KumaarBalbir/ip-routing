@@ -29,8 +29,6 @@ class IPTrie
 {
 private:
   TrieNode *root;
-  std::string decToBinary(const std::string &segment);
-  std::string ipToBinary(const std::string &ip);
 
 public:
   IPTrie();
