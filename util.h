@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 #include <utility> // for std::pair
-
+#include <bitset>
 std::vector<std::pair<std::string, std::string>> read_csv(std::string filename)
 {
   std::vector<std::pair<std::string, std::string>> data;
