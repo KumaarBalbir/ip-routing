@@ -2,7 +2,7 @@
 #define ROUTER_CPP
 
 #include "router.h"
-#include "util.h"
+#include "../util.h"
 #include <sstream>
 #include <bitset>
 
