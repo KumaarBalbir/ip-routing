@@ -1,0 +1,5 @@
+IP_Prefix,Router
+192.168.20.16/28,Router1
+192.168.0.0/16,Router2
+192.168.1.0/24,Router3
+10.10.0.0/16,Router4
