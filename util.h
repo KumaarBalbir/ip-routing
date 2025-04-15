@@ -44,4 +44,26 @@ std::pair<std::string, std::string> split_ip_prefix(std::string ip_prefix)
   result.second = mask;
   return result;
 }
+
+std::string decToBinary(const std::string &segment)
+{
+  int num = std::stoi(segment);
+  std::bitset<8> bits(num);
+  return bits.to_string();
+}
+
+std::string ipToBinary(const std::string &ip)
+{
+  std::stringstream ss(ip);
+  std::string segment;
+  std::string binary;
+
+  for (int i = 0; i < 4; i++)
+  {
+    std::getline(ss, segment, '.');
+    binary += decToBinary(segment);
+  }
+
+  return binary;
+}
 #endif
