@@ -14,6 +14,16 @@ struct Entry{
   std::string routeName;
 };
 
+class RouterBSPL{
+  private:
+  std::vector<std::unordered_map>std::string, Entry>> prefixTable;
+  public:
+  RouteBSPL();
+  void insertPrefix(const std::string &ip, int maskLen, const std::string &routeName);
+  void insertImgEntries();
+  std::string findBSPLmatch(const std::string &ip);
+};
+
 
 
 
