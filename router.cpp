@@ -85,31 +85,26 @@ void IPTrie::insert(Route *route)
   // Store route information at the node
   current->route = route;
 }
-Route *IPTrie::findLongestPrefixMatch(const std::string &ip)
-{
-  std::string binaryIP = ipToBinary(ip);
-  TrieNode *current = root;
-  Route *result = nullptr;
-
-  for (int i = 0; i < binaryIP.length(); i++)
-  {
-    int bit = binaryIP[i] - '0';
-
-    if (current->children[bit] != nullptr)
-    {
-      current = current->children[bit];
-      if (current->route != nullptr)
-      {
-        result = current->route;
-      }
+Route* IPTrie::findLongestPrefixMatch(const std::string& ip) {
+    std::string binaryIP = ipToBinary(ip);
+    
+    TrieNode* current = root;
+    Route* matchedRoute = nullptr;
+    
+    for (int i = 0; i < 32 && current != nullptr; i++) {
+        if (current->route != nullptr) {
+            matchedRoute = current->route;
+        }
+        int bit = binaryIP[i] - '0';
+        current = current->children[bit];
     }
-    else
-    {
-      break;
+    
+    // Check the final node
+    if (current && current->route != nullptr) {
+        matchedRoute = current->route;
     }
-  }
-
-  return result;
+    
+    return matchedRoute;
 }
 void IPTrie::deleteTrie()
 {
