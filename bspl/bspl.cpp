@@ -21,9 +21,8 @@ int main()
     
     router.insertPrefix(ip, std::stoi(mask), router_name);
   }
-  cout<<"before insert img entries"<<endl;
+
   router.insertImgEntries();
-  cout<<"after insert img entries"<<endl;
 
   std::string testIP = "192.168.20.191";
   // timer start
