@@ -34,4 +34,38 @@ void RouterBSPL::insertImgEntries(){
   }
 }
 
+std::string RouterBSPL::findBSPLmatch(const std::string &ip){
+  std::string binaryIP = ipToBinary(ip);
+  int low = 0, high = IPV4_BIT_LENGTH;
+  std::string bestMatch = "";
+  std::string bestRouter = "";
+
+  while(low <= high){
+    int mid = (low + high)/2; 
+    std::string prefix = binaryIP.substr(0, mid);
+    if(prefixTable[mid].find(prefix) != prefixTable[mid].end())
+    {
+       Entry &entry = prefixTable[mid][prefix];
+       if(entry.isReal)
+       {
+         bestMatch = entry.prefix;
+         bestRouter = entry.routeName;
+         low = mid + 1; // try longer match in right half
+       }else{
+        // imaginary entry, fallback to LSF
+        if(prefixTable[entry.lsfPrefix.length()].count(entry.lsfPrefix))
+        {
+           Entry &lsfEntry = prefixTable[entry.lsfPrefix.length()][entry.lsfPrefix];
+           bestMatch = lsfEntry.prefix;
+           bestRouter = lsfEntry.routeName;
+        }
+        high = mid - 1;
+       }
+    }else{
+      high = mid - 1;
+    }
+  }
+  return bestRouter;
+}
+
 #endif
